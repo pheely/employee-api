@@ -142,5 +142,5 @@ terraform destroy
 
 Delete the container image
 ```bash
-gcloud artifacts packages delete employee-api --repository=cloud-run-try --location=us-central1
+gcloud artifacts packages delete employee --repository=cloud-run-try --location=us-central1
 ```
