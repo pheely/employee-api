@@ -72,11 +72,11 @@ func (r RedisStore) Update(listID string, id string, newT *Employee) (*Employee,
 	var t Employee
 	json.Unmarshal(tb, &t)
 
-	if newT.FirstName != "" {
-		t.FirstName = newT.FirstName
+	if newT.First_Name != "" {
+		t.First_Name = newT.First_Name
 	}
-	if newT.LastName != "" {
-		t.LastName = newT.LastName
+	if newT.Last_Name != "" {
+		t.Last_Name = newT.Last_Name
 	}
 	if newT.Department != "" {
 		t.Department = newT.Department

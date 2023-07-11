@@ -51,7 +51,7 @@ func (s SQLStore) Create(_ string, t *Employee) error {
 	if err != nil {
 		return err
 	}
-	res, err := stmt.Exec(t.FirstName, t.LastName, t.Department, t.Salary, t.Age)
+	res, err := stmt.Exec(t.First_Name, t.Last_Name, t.Department, t.Salary, t.Age)
 	if err != nil {
 		return err
 	}
@@ -82,11 +82,11 @@ func (s SQLStore) Update(listID string, id string, newT *Employee) (*Employee, e
 		return nil, err
 	}
 	if t != nil {
-		if newT.FirstName != "" {
-			t.FirstName = newT.FirstName
+		if newT.First_Name != "" {
+			t.First_Name = newT.First_Name
 		}
-		if newT.LastName != "" {
-			t.LastName = newT.LastName
+		if newT.Last_Name != "" {
+			t.Last_Name = newT.Last_Name
 		}
 		if newT.Department != "" {
 			t.Department = newT.Department
@@ -109,7 +109,7 @@ func (s SQLStore) Update(listID string, id string, newT *Employee) (*Employee, e
 		if err != nil {
 			return nil, err
 		}
-		_, err = stmt.Exec(t.FirstName, t.LastName, t.Department, t.Salary, t.Age, id)
+		_, err = stmt.Exec(t.First_Name, t.Last_Name, t.Department, t.Salary, t.Age, id)
 		if err != nil {
 			return nil, err
 		}
@@ -127,7 +127,7 @@ func (s SQLStore) Get(_ string, id string) (*Employee, error) {
 	defer rows.Close()
 	t := Employee{}
 	for rows.Next() {
-		err := rows.Scan(&t.ID, &t.FirstName, &t.LastName, &t.Department, &t.Salary, &t.Age)
+		err := rows.Scan(&t.ID, &t.First_Name, &t.Last_Name, &t.Department, &t.Salary, &t.Age)
 		if err != nil {
 			return nil, err
 		}
@@ -160,7 +160,7 @@ func (s SQLStore) List(_ string) ([]Employee, error) {
 	result := []Employee{}
 	for rows.Next() {
 		t := Employee{}
-		err := rows.Scan(&t.ID, &t.FirstName, &t.LastName, &t.Department, &t.Salary, &t.Age)
+		err := rows.Scan(&t.ID, &t.First_Name, &t.Last_Name, &t.Department, &t.Salary, &t.Age)
 		if err != nil {
 			return nil, err
 		}

@@ -53,7 +53,7 @@ func main() {
 	r := mux.NewRouter()
 	r.Use(middleware)
 
-	s := handler.Service{SessionStore: newSessionStore()}
+//	s := handler.Service{SessionStore: newSessionStore()}
 
 	dbURL, err := getURL()
 	if err != nil {

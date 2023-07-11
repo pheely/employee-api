@@ -12,8 +12,8 @@ type Store interface {
 
 type Employee struct {
 	ID        string
-	FirstName string
-	LastName  string
+	First_Name string
+	Last_Name  string
 	Department string
 	Salary    int
 	Age       int

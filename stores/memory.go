@@ -37,11 +37,11 @@ func (m Memory) Update(listID string, id string, newT *Employee) (*Employee, err
 		return nil, err
 	}
 	if oldT != nil {
-		if newT.FirstName != "" {
-			oldT.FirstName = newT.FirstName
+		if newT.First_Name != "" {
+			oldT.First_Name = newT.First_Name
 		}
-		if newT.LastName != "" {
-			oldT.LastName = newT.LastName
+		if newT.Last_Name != "" {
+			oldT.Last_Name = newT.Last_Name
 		}
 		if newT.Department != "" {
 			oldT.Department = newT.Department

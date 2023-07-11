@@ -48,8 +48,9 @@ func (s *Service) SessionHandler(next http.Handler) http.Handler {
 }
 
 type employee struct {
-	FirstName string `json:"first_name"`
-	LastName  string `json:"last_name"`
+	Id	   string  `json:"id"`
+	First_Name string `json:"first_name"`
+	Last_Name  string `json:"last_name"`
 	Department string `json:"department"`
 	Salary    int    `json:"salary"`
 	Age      int    `json:"age"`
@@ -59,10 +60,11 @@ func listID(r *http.Request) string {
 	return r.Context().Value(sessionIDKey).(string)
 }
 
-func addURL(t stores.Employee) employee {
+func addId(t stores.Employee) employee {
 	tU := employee{
-		FirstName:     	t.FirstName,
-		LastName: 		t.LastName,
+		Id:			t.ID,
+		First_Name:     	t.First_Name,
+		Last_Name: 		t.Last_Name,
 		Department:     t.Department,
 		Salary:       	t.Salary,
 		Age: 			t.Age,
@@ -79,7 +81,7 @@ func (s *Service) List(w http.ResponseWriter, r *http.Request) {
 	}
 	result := []employee{}
 	for _, t := range list {
-		result = append(result, addURL(t))
+		result = append(result, addId(t))
 	}
 	json.NewEncoder(w).Encode(result)
 }
@@ -122,7 +124,7 @@ func (s *Service) Update(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
-	json.NewEncoder(w).Encode(addURL(*res))
+	json.NewEncoder(w).Encode(addId(*res))
 }
 
 func (s *Service) Get(w http.ResponseWriter, r *http.Request) {
@@ -133,7 +135,7 @@ func (s *Service) Get(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if t != nil {
-		json.NewEncoder(w).Encode(addURL(*t))
+		json.NewEncoder(w).Encode(addId(*t))
 		return
 	}
 	w.WriteHeader(http.StatusNotFound)
@@ -152,7 +154,7 @@ func (s *Service) Create(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	json.NewEncoder(w).Encode(addURL(t))
+	json.NewEncoder(w).Encode(addId(t))
 }
 
 func (s *Service) Tokenize(w http.ResponseWriter, r *http.Request) {
@@ -168,7 +170,7 @@ func (s *Service) Tokenize(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	json.NewEncoder(w).Encode(addURL(t))
+	json.NewEncoder(w).Encode(addId(t))
 }
 
 func (s *Service) Detokenize(w http.ResponseWriter, r *http.Request) {
@@ -184,5 +186,5 @@ func (s *Service) Detokenize(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	json.NewEncoder(w).Encode(addURL(t))
+	json.NewEncoder(w).Encode(addId(t))
 }
