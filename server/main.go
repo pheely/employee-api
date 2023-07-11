@@ -38,7 +38,7 @@ func newSessionStore() *sessions.CookieStore {
 	key := os.Getenv("SECRET_SESSION_KEY")
 	var bkey []byte
 	if key == "" {
-		log.Error().Msg("Set env var SECRET_SESSION_KEY to secure sessions")
+//		log.Error().Msg("Set env var SECRET_SESSION_KEY to secure sessions")
 		bkey = []byte("secret")
 	} else {
 		bkey = []byte(key)
@@ -53,7 +53,7 @@ func main() {
 	r := mux.NewRouter()
 	r.Use(middleware)
 
-//	s := handler.Service{SessionStore: newSessionStore()}
+	s := handler.Service{SessionStore: newSessionStore()}
 
 	dbURL, err := getURL()
 	if err != nil {
